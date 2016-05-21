@@ -1,0 +1,39 @@
+package persistence;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class Dao {
+
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String URL = "jdbc:mysql://localhost:3306/aula06";
+	private static final String USER = "root";
+	private static final String PASSWORD = "brqbrq";
+	
+	//API do jdbc (java.sql.*)
+	protected Connection con;
+	protected PreparedStatement stmt;
+	protected CallableStatement call;
+	protected ResultSet rs;
+	
+	//métodos para acessar a base de dados..
+	protected void openConnection() throws Exception{
+		Class.forName(DRIVER);
+		con = DriverManager.getConnection(URL, USER, PASSWORD);
+	}
+	
+	protected void closeConnection() throws Exception{
+		if(con != null){
+			con.close();
+		}
+	}	
+}
+
+
+
+
+
+
